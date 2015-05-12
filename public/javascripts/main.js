@@ -1,3 +1,8 @@
+/*
+  Script by Edilson Fernando Gonzalez
+  @efgm1024
+*/
+
 $(document).ready(function() {
   // Returns a random integer between min (included) and max (excluded)
   function getRandomInt(min, max) {
