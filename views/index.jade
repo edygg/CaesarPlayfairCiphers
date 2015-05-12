@@ -1,0 +1,36 @@
+extends layout
+
+block content
+  .col-md-10.col-md-offset-1
+    h1= title
+    .row
+      .col-md-8
+        canvas(id='caesar_chart', width='800', height='400')
+      
+      .col-md-4
+        form.form-horizontal(id='caesar_cipher_form')
+          .form-group
+            label.control-label.col-md-3 Shift
+            .col-md-9
+              input.form-control(type='number', id="caesar_cipher_shift")
+          .form-group
+            label.control-label.col-md-3 String length
+            .col-md-9
+              input.form-control(type='number', id="caesar_cipher_string_length")
+          input.btn.btn-success(type='submit', value='Show results')
+              
+    .row
+      .col-md-8
+        canvas(id='playfair_chart', width='800', height='400')
+        
+      .col-md-4
+        form.form-horizontal(id='playfair_cipher_form')
+          .form-group
+            label.control-label.col-md-3 Key
+            .col-md-9
+              input.form-control(type='text', id="playfair_cipher_key")
+          .form-group
+            label.control-label.col-md-3 String length
+            .col-md-9
+              input.form-control(type='number', id="playfair_cipher_string_length")
+          input.btn.btn-success(type='submit', value='Show results')
