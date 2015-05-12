@@ -42,6 +42,21 @@ $(document).ready(function() {
     return alphabet;
   }
   
+  var $plainText = "";
+  
+  $('#general_parameters').on('submit', function(e) {
+    e.preventDefault();
+    
+    if (parseInt($('#string_length').val()) < 0 || $('#string_length').val() === '') {
+      alert('Check string length.');
+      return false;
+    }
+    
+    $plainText = getRandomString(parseInt($('#string_length').val()))
+    
+    return false;
+  });
+  
   $('#caesar_cipher_form').on('submit', function(e) {
     e.preventDefault();
     
@@ -50,12 +65,12 @@ $(document).ready(function() {
       return false;
     }
     
-    if ($('#caesar_cipher_string_length').val() <= 0 || $('#caesar_cipher_string_length').val() === '') {
-      alert('Check string length value.')
+    if ($plainText === '') {
+      alert('Check string value.')
       return false;
     }
     
-    var cipherString = caesarCipher(getRandomString(parseInt($('#caesar_cipher_string_length').val())), parseInt($('#caesar_cipher_shift').val()));
+    var cipherString = caesarCipher($plainText, parseInt($('#caesar_cipher_shift').val()));
     console.log(cipherString);
     var frequency = analizeCipherString(cipherString);
     
@@ -92,12 +107,12 @@ $(document).ready(function() {
       return false;
     }
     
-    if ($('#playfair_cipher_string_length').val() <= 0 || $('#play_cipher_string_length').val() === '') {
-      alert('Check string length value.');
+    if ($plainText === '') {
+      alert('Check string value.');
       return false;
     }
     
-    var cipherString = Playfair(1, getRandomString(parseInt($('#playfair_cipher_string_length').val())), "L", "L", $('#playfair_cipher_key').val(), 0x01);
+    var cipherString = Playfair(1, $plainText, "L", "N", $('#playfair_cipher_key').val(), 0x01);
     var frequency = analizeCipherString(cipherString);
     
     var values = []
